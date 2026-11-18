@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#0c1511" />
+    <meta name="description" content="Walk an original council chamber of tall white seats in a jungle clearing, then take a seat." />
+    <title>Canopy Council</title>
+  </head>
+  <body>
+    <canvas id="scene" aria-label="3D council chamber in a jungle clearing"></canvas>
+
+    <div id="hud" hidden>
+      <header class="hud-top">
+        <div class="brand">Canopy Council</div>
+        <div class="status">
+          <span id="status-view" class="chip">Third person</span>
+          <span id="status-seats" class="chip">Seats empty</span>
+        </div>
+      </header>
+
+      <div id="crosshair" class="crosshair"></div>
+
+      <button id="prompt" class="prompt" type="button">
+        <kbd id="prompt-key">E</kbd><span id="prompt-text">Sit down</span>
+      </button>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <aside id="hints" class="hints" aria-label="Controls">
+        <button id="hints-title" class="hints-title" type="button" data-action="hints" aria-expanded="true">
+          Controls <span class="hints-toggle"><kbd class="desktop-only">H</kbd><span id="hints-action">hide</span></span>
+        </button>
+        <dl class="desktop-only">
+          <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>Move (or arrow keys)</dd>
+          <dt><kbd>Shift</kbd></dt><dd>Run</dd>
+          <dt><kbd>Space</kbd></dt><dd>Jump</dd>
+          <dt><kbd>Mouse</kbd></dt><dd>Look (click to lock, or drag)</dd>
+          <dt><kbd>Wheel</kbd></dt><dd>Camera distance</dd>
+          <dt><kbd>E</kbd></dt><dd>Sit down / stand up</dd>
+          <dt><kbd>V</kbd></dt><dd>First / third person</dd>
+          <dt><kbd>M</kbd></dt><dd>Mannequins in the seats</dd>
+          <dt><kbd>O</kbd></dt><dd>View from above</dd>
+        </dl>
+        <dl class="touch-only">
+          <dt>Left thumb</dt><dd>Move (push far to run)</dd>
+          <dt>Right thumb</dt><dd>Look around</dd>
+          <dt>Buttons</dt><dd>Jump, sit, view, mannequins, overview</dd>
+        </dl>
+      </aside>
+
+      <div id="lock-hint" class="lock-hint desktop-only">Click the scene to look with the mouse · <kbd>Esc</kbd> releases it</div>
+
+      <div class="touch-controls touch-only">
+        <div id="stick" class="stick"><div id="stick-knob" class="stick-knob"></div></div>
+        <div class="touch-buttons">
+          <button type="button" data-action="jump">Jump</button>
+          <button type="button" data-action="sit">Sit</button>
+          <button type="button" data-action="view">View</button>
+          <button type="button" data-action="mannequins">Seats</button>
+          <button type="button" data-action="overview">Above</button>
+        </div>
+      </div>
+    </div>
+
+    <section id="loading" class="overlay">
+      <div class="card">
+        <p class="eyebrow">A walkable chamber</p>
+        <h1>Canopy Council</h1>
+        <p class="lede">Twelve tall white seats ring a stone table in a clearing deep in the jungle. Walk in through the gaps, find a seat, and look around.</p>
+        <div class="progress" aria-hidden="true"><div id="progress-bar" class="progress-bar"></div></div>
+        <p id="progress-label" class="progress-label">Preparing the clearing</p>
+        <button id="enter" class="enter" type="button" hidden>Enter the clearing</button>
+        <p class="fine desktop-only">Move with <kbd>WASD</kbd>, look with the mouse, sit with <kbd>E</kbd>.</p>
+        <p class="fine touch-only">Left thumb moves, right thumb looks. Tap Sit near a chair.</p>
+      </div>
+    </section>
+
+    <section id="error" class="overlay" hidden>
+      <div class="card">
+        <p class="eyebrow">Something went wrong</p>
+        <h1>The clearing would not load</h1>
+        <p id="error-message" class="lede"></p>
+        <button id="retry" class="enter" type="button">Try again</button>
+      </div>
+    </section>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
